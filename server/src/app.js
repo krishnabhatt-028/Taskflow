@@ -5,10 +5,16 @@ import morgan from 'morgan'
 
 const app = express()
 
-app.use(helmet())
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  process.env.CLIENT_URL?.replace(/\/$/, ''),
+].filter(Boolean)
+
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   })
 )
