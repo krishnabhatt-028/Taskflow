@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import sendResponse from '../utils/sendResponse.js'
+import authRoutes from './auth.routes.js'
 
 const router = Router()
 
@@ -9,7 +10,8 @@ router.get('/health', (req, res) => {
   })
 })
 
-// Phase 4: router.use('/auth', authRoutes)
+router.use('/auth', authRoutes)
+
 // Phase 6: router.use('/projects', projectRoutes)
 // Phase 7: router.use('/tasks', taskRoutes)
 
